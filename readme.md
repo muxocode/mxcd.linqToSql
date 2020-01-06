@@ -25,7 +25,7 @@ sQuery = oSqlParser.GroupBy((Paciente x) => x.MayorEdad).Count();
 //MIN
 sQuery = oSqlParser.Min((Paciente x) => x.Id);
 sQuery = oSqlParser.Where((Paciente x) => x.Id < 10).Min((Paciente x) => x.Id);
-sQuery = oSqlParser.Where((Paciente x) => x.Id < 10).GroupBy((Paciente x) => 
+sQuery = oSqlParser.Where((Paciente x) => x.Id < 10).GroupBy((Paciente x) => x.Name).Min((Paciente x) => x.Id);
                                                              
 //SUM
 sQuery = oSqlParser.Sum((Paciente x) => x.Id);
