@@ -2,12 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>https://muxocode.com</Authors>
     <Description>Expression LINQ to SQL string</Description>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/muxocode/mxcd.linqToSql</PackageProjectUrl>
     <PackageTags>LINQ Expression SQL</PackageTags>
+    <PackageIconUrl>https://muxocode.com/icon.png</PackageIconUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
