@@ -30,12 +30,12 @@ sQuery = oSqlParser.Where((Paciente x) => x.Id < 10).GroupBy((Paciente x) =>
 //SUM
 sQuery = oSqlParser.Sum((Paciente x) => x.Id);
 sQuery = oSqlParser.Where((Paciente x) => x.Id < 10).Sum((Paciente x) => x.Id);
-sQuery = oSqlParser.Where((Paciente x) => x.Id < 10).GroupBy((Paciente x) => 
+sQuery = oSqlParser.Where((Paciente x) => x.Id < 10).GroupBy((Paciente x) => x.Name).Sum((Paciente x) => x.Id);
                                                              
 //FIRST
 sQuery = oSqlParser.Fisrt();
 sQuery = oSqlParser.Where((Paciente x) => x.Id < 10).Fisrt();
-sQuery = oSqlParser.Where((Paciente x) => x.Id > 10).OrderBy((Paciente x) => 
+sQuery = oSqlParser.Where((Paciente x) => x.Id > 10).OrderBy((Paciente x) => x.Id).Fisrt();
                                                              
 //DELETE
 sQuery = oSqlParser.Delete();
