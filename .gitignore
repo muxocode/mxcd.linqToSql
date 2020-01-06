@@ -3,3 +3,11 @@
 ################################################################################
 
 /.vs/mxcd.linqToSql
+/test/mxcd.linqToSql.common/obj
+/test/mxcd.linqToSql.common/bin
+/test/mxcd.linqToSql.test/bin
+/test/mxcd.linqToSql.test/obj
+/test/mxcd.linqToSql.test.sql/bin
+/test/mxcd.linqToSql.test.sql/obj
+/src/mxcd.linqToSql/bin
+/src/mxcd.linqToSql/obj

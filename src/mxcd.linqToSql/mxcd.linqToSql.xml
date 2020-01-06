@@ -1,0 +1,237 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>mxcd.linqToSql</name>
+    </assembly>
+    <members>
+        <member name="T:mxcd.linqToSql.common.LinqToSqlException">
+            <summary>
+            Linq to SQL exception
+            </summary>
+        </member>
+        <member name="M:mxcd.linqToSql.common.LinqToSqlException.#ctor(System.String,System.Exception,Microsoft.Extensions.Logging.ILogger{System.Exception})">
+            <summary>
+            Linq To Sql exception
+            </summary>
+            <param name="message">message</param>
+            <param name="innerException">exception</param>
+            <param name="logger">ILogger</param>
+        </member>
+        <member name="T:mxcd.linqToSql.IFilteredSql">
+            <summary>
+            Filtered command or query
+            </summary>
+        </member>
+        <member name="M:mxcd.linqToSql.IFilteredSql.Delete">
+            <summary>
+            Deletes the given entities
+            </summary>
+            <returns>Command</returns>
+        </member>
+        <member name="M:mxcd.linqToSql.IFilteredSql.OrderBy``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Generates an order by
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <typeparam name="TReturn">Return type</typeparam>
+            <param name="property">property</param>
+            <returns></returns>
+        </member>
+        <member name="M:mxcd.linqToSql.IFilteredSql.Update``1(``0,System.Boolean,System.Boolean)">
+            <summary>
+            Updates the given collection
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <param name="entity">entity values to update</param>
+            <param name="includeProps">Include props values, default value=true</param>
+            <param name="includeFields">Include fields values, default value=false</param>
+            <returns>Command</returns>
+        </member>
+        <member name="T:mxcd.linqToSql.IGroupedSql">
+            <summary>
+            Grouped SQL
+            </summary>
+        </member>
+        <member name="M:mxcd.linqToSql.IGroupedSql.Avg``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            AVG query
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <typeparam name="TReturn">Property type</typeparam>
+            <param name="property">Property</param>
+            <returns>Query</returns>
+        </member>
+        <member name="M:mxcd.linqToSql.IGroupedSql.Count">
+            <summary>
+            COUNT query
+            </summary>
+            <returns>Query</returns>
+        </member>
+        <member name="M:mxcd.linqToSql.IGroupedSql.Max``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            MAX query
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <typeparam name="TReturn">Property type</typeparam>
+            <param name="property">Property</param>
+            <returns>Query</returns>
+        </member>
+        <member name="M:mxcd.linqToSql.IGroupedSql.Min``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            MIN query
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <typeparam name="TReturn">Property type</typeparam>
+            <param name="property">Property</param>
+            <returns>Query</returns>
+        </member>
+        <member name="M:mxcd.linqToSql.IGroupedSql.Sum``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            SUM query
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <typeparam name="TReturn">Property type</typeparam>
+            <param name="property">Property</param>
+            <returns>Query</returns>
+        </member>
+        <member name="T:mxcd.linqToSql.ILinqToSql">
+            <summary>
+            Specifies the table name and schema to work
+            </summary>
+        </member>
+        <member name="M:mxcd.linqToSql.ILinqToSql.From(System.String,System.String)">
+            <summary>
+            Specifies the table name and schema
+            </summary>
+            <param name="tableName">Table name</param>
+            <param name="schema">schema</param>
+            <returns></returns>
+        </member>
+        <member name="T:mxcd.linqToSql.IOrderedSql">
+            <summary>
+            Order query
+            </summary>
+        </member>
+        <member name="M:mxcd.linqToSql.IOrderedSql.Fisrt``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            First query
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <typeparam name="TReturn">Property type</typeparam>
+            <param name="property">Property</param>
+            <returns>Query</returns>
+        </member>
+        <member name="M:mxcd.linqToSql.IOrderedSql.Fisrt">
+            <summary>
+            First query
+            </summary>
+            <returns>Query</returns>
+        </member>
+        <member name="M:mxcd.linqToSql.IOrderedSql.GroupBy``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Generates a grouped interface
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <typeparam name="TReturn">Property type</typeparam>
+            <param name="property">Property</param>
+            <returns>Query</returns>
+        </member>
+        <member name="M:mxcd.linqToSql.IOrderedSql.List">
+            <summary>
+            Generates a LIST
+            </summary>
+            <returns>Query</returns>
+        </member>
+        <member name="M:mxcd.linqToSql.IOrderedSql.List``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            List query
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <typeparam name="TReturn">Property type</typeparam>
+            <param name="property">Property</param>
+            <returns>Query</returns>
+        </member>
+        <member name="M:mxcd.linqToSql.IOrderedSql.List(System.Int32,System.Int32)">
+            <summary>
+            Paged query
+            </summary>
+            <param name="page">Page</param>
+            <param name="registryNumber">Numer of registers</param>
+            <returns>Query</returns>
+        </member>
+        <member name="M:mxcd.linqToSql.IOrderedSql.List``2(System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            Paged query
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <typeparam name="TReturn">Property type</typeparam>
+            <param name="page">Page</param>
+            <param name="registryNumber">Numer of registers</param>
+            <param name="property">Property</param>
+            <returns>Query</returns>
+        </member>
+        <member name="T:mxcd.linqToSql.ITableSql">
+            <summary>
+            Table commands and queries
+            </summary>
+        </member>
+        <member name="M:mxcd.linqToSql.ITableSql.Insert``1(``0,System.Boolean,System.Boolean,System.String,System.Boolean)">
+            <summary>
+            Insert a new entity
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <param name="entity">Entity</param>
+            <param name="includeProps">Determines if props are incluyed, default:true</param>
+            <param name="includeFields">Determines if fields are incluyed, default:false</param>
+            <param name="primaryKeyName">Primary key name, default: "Id"</param>
+            <param name="includePrimaryKey">Determines id primary key is incluyed, default: false</param>
+            <returns></returns>
+        </member>
+        <member name="M:mxcd.linqToSql.ITableSql.InsertMasive``1(System.Collections.Generic.IEnumerable{``0},System.Boolean,System.Boolean,System.String,System.Boolean)">
+            <summary>
+            Insert a new list of entities
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <param name="entities">Entities</param>
+            <param name="includeProps">Determines if props are incluyed, default:true</param>
+            <param name="includeFields">Determines if fields are incluyed, default:false</param>
+            <param name="primaryKeyName">Primary key name, default: "Id"</param>
+            <param name="includePrimaryKey">Determines id primary key is incluyed, default: false</param>
+        </member>
+        <member name="M:mxcd.linqToSql.ITableSql.Where``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Filtered query or command
+            </summary>
+            <typeparam name="T">Type</typeparam>
+            <param name="expression">Filter</param>
+            <returns></returns>
+        </member>
+        <member name="T:mxcd.linqToSql.LinqToSqlType">
+            <summary>
+            Type of sql generator
+            </summary>
+        </member>
+        <member name="F:mxcd.linqToSql.LinqToSqlType.SqlServer">
+            <summary>
+            Sql server
+            </summary>
+        </member>
+        <member name="F:mxcd.linqToSql.LinqToSqlType.SqlServerWithNoLock">
+            <summary>
+            Sql server with no lock
+            </summary>
+        </member>
+        <member name="T:mxcd.linqToSql.LinqToSqlFactory">
+            <summary>
+            Factory of ILinqToSql
+            </summary>
+        </member>
+        <member name="M:mxcd.linqToSql.LinqToSqlFactory.Create(mxcd.linqToSql.LinqToSqlType)">
+            <summary>
+            Creates a new ILinqToSql
+            </summary>
+            <param name="obj">LinqToSqlType</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,10 @@
+version: '3.0'
+services:
+  mssql:
+    build:
+        context: mssql
+    ports:
+      - ${PORT}:1433
+    environment:
+      ACCEPT_EULA: 'Y'
+      SA_PASSWORD: ${PASSWORD}
