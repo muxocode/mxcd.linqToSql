@@ -249,9 +249,17 @@ namespace mxcd.linqToSql.test._base
             var sString3 = $"UPDATE {table()} SET Id = 0,MayorEdad = 0,Nombre = null";
             var sResult3 = oQuery.From(tableName, schema).Update(new Paciente());
 
+            var sString4 = $"UPDATE {table()} SET Id = 0,MayorEdad = 0,Nombre = null";
+            var sResult4 = oQuery.From(tableName, schema).Where<Paciente>(null).Update(new Paciente());
+
+            var sString5 = $"UPDATE {table()} SET Id = 3";
+            var sResult5 = oQuery.From(tableName, schema).Where<Paciente>(null).Update(new { Id = 3 });
+
             Assert.True(sResult == sString);
             Assert.True(sResult2 == sString2);
             Assert.True(sResult3 == sString3);
+            Assert.True(sResult4 == sString4);
+            Assert.True(sResult5 == sString5);
 
         }
 
