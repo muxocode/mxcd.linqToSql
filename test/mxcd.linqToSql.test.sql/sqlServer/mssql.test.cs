@@ -103,7 +103,10 @@ namespace mxcd.linqToSql.test.sql
 
                 //INSERCION
                 var aEntities = getEntities();
-                sQuery = oSqlParser.InsertMasive(getEntities(), includePrimaryKey: true);
+                sQuery = oSqlParser.Insert(getEntities()[0], includePrimaryKey: true);
+                dbConnection.Execute(sQuery);
+
+                sQuery = oSqlParser.InsertMasive(getEntities().Skip(1), includePrimaryKey: true);
                 dbConnection.Execute(sQuery);
 
                 //Listado

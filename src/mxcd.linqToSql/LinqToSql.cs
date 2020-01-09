@@ -70,7 +70,7 @@ namespace mxcd.linqToSql
         {
             try
             {
-                var SqlConsultant = SqlGenerator(Type, tableName: TableName, schema: Schema);
+                var SqlConsultant = SqlGenerator(Type, tableName: $"[{TableName}]", schema: $"[{Schema ?? "dbo"}]");
                 var result = SqlConsultant.Max(property.ToSql(), this.Expression, this.Grouped);
                 Log(result);
                 return result;
@@ -84,7 +84,7 @@ namespace mxcd.linqToSql
         {
             try
             {
-                var SqlConsultant = SqlGenerator(Type, tableName: TableName, schema: Schema);
+                var SqlConsultant = SqlGenerator(Type, tableName: $"[{TableName}]", schema: $"[{Schema ?? "dbo"}]");
                 var result = SqlConsultant.Min(property.ToSql(), this.Expression, this.Grouped);
                 Log(result);
                 return result;
@@ -98,7 +98,7 @@ namespace mxcd.linqToSql
         {
             try
             {
-                var SqlConsultant = SqlGenerator(Type, tableName: TableName, schema: Schema);
+                var SqlConsultant = SqlGenerator(Type, tableName: $"[{TableName}]", schema: $"[{Schema ?? "dbo"}]");
                 var result = SqlConsultant.Avg(property.ToSql(), this.Expression, this.Grouped);
                 Log(result);
                 return result;
@@ -112,7 +112,7 @@ namespace mxcd.linqToSql
         {
             try
             {
-                var SqlConsultant = SqlGenerator(Type, tableName: TableName, schema: Schema);
+                var SqlConsultant = SqlGenerator(Type, tableName: $"[{TableName}]", schema: $"[{Schema ?? "dbo"}]");
                 var result = SqlConsultant.Sum(property.ToSql(), this.Expression, this.Grouped);
                 Log(result);
                 return result;
@@ -126,7 +126,7 @@ namespace mxcd.linqToSql
         {
             try
             {
-                var SqlConsultant = SqlGenerator(Type, tableName: TableName, schema: Schema);
+                var SqlConsultant = SqlGenerator(Type, tableName: $"[{TableName}]", schema: $"[{Schema ?? "dbo"}]");
                 var result = SqlConsultant.Select(property?.ToSql(), this.Expression, this.Order);
                 Log(result);
                 return result;
@@ -140,7 +140,7 @@ namespace mxcd.linqToSql
         {
             try
             {
-                var SqlConsultant = SqlGenerator(Type, tableName: TableName, schema: Schema);
+                var SqlConsultant = SqlGenerator(Type, tableName: $"[{TableName}]", schema: $"[{Schema ?? "dbo"}]");
                 var result = SqlConsultant.Select(property?.ToSql(), this.Expression, page, registryNumber, this.Order);
                 Log(result);
                 return result;
@@ -154,7 +154,7 @@ namespace mxcd.linqToSql
         {
             try
             {
-                var SqlConsultant = SqlGenerator(Type, tableName: TableName, schema: Schema);
+                var SqlConsultant = SqlGenerator(Type, tableName: $"[{TableName}]", schema: $"[{Schema ?? "dbo"}]");
                 var result = SqlConsultant.Count(this.Expression, this.Grouped);
                 Log(result);
                 return result;
@@ -168,7 +168,7 @@ namespace mxcd.linqToSql
         {
             try
             {
-                var SqlConsultant = SqlGenerator(Type, tableName: TableName, schema: Schema);
+                var SqlConsultant = SqlGenerator(Type, tableName: $"[{TableName}]", schema: $"[{Schema ?? "dbo"}]");
                 var result = SqlConsultant.Fisrt(property?.ToSql(), this.Expression, this.Order);
                 Log(result);
                 return result;
@@ -182,13 +182,13 @@ namespace mxcd.linqToSql
         {
             try
             {
-                var SqlConsultant = SqlGenerator(Type, tableName: TableName, schema: Schema);
+                var SqlConsultant = SqlGenerator(Type, primaryKeyTable: $"[{primaryKeyName}]", tableName: $"[{TableName}]", schema: $"[{Schema ?? "dbo"}]");
                 var value_keys = entity
                     .GetKeysValues(includeProps, includeFields, new List<string>() { includePrimaryKey ? "" : primaryKeyName })
                     .Reverse();
 
                 var result = SqlConsultant.Insert(
-                    string.Join(", ", value_keys.Select(x => x.Name)),
+                    $"[{string.Join("], [", value_keys.Select(x => x.Name))}]",
                     string.Join(", ", value_keys.Select(x => x.Value.ToSql(typeof(object)))));
 
                 Log(result);
@@ -203,7 +203,7 @@ namespace mxcd.linqToSql
         {
             try
             {
-                var SqlConsultant = SqlGenerator(Type, tableName: TableName, schema: Schema);
+                var SqlConsultant = SqlGenerator(Type, primaryKeyTable: $"[{primaryKeyName}]", tableName: $"[{TableName}]", schema: $"[{Schema ?? "dbo"}]");
                 var value_keys = entities
                     .Select(x =>
                         x.GetKeysValues(
@@ -214,8 +214,8 @@ namespace mxcd.linqToSql
                     );
 
                 var result = SqlConsultant.Insert(
-                    string.Join(" ,", value_keys.First().Select(x => x.Name)),
-                    value_keys.Select(x => string.Join(" ,", x.Select(y => y.Value.ToSql(typeof(object))))));
+                    $"[{string.Join("], [", value_keys.First().Select(x => x.Name))}]",
+                    value_keys.Select(x => string.Join(", ", x.Select(y => y.Value.ToSql(typeof(object))))));
 
                 Log(result);
                 return result;
@@ -229,7 +229,7 @@ namespace mxcd.linqToSql
         {
             try
             {
-                var SqlConsultant = SqlGenerator(Type, tableName: TableName, schema: Schema);
+                var SqlConsultant = SqlGenerator(Type, tableName: $"[{TableName}]", schema: $"[{Schema ?? "dbo"}]");
                 var result = SqlConsultant.Delete(this.Expression);
                 Log("DELETE");
                 return result;
@@ -243,11 +243,11 @@ namespace mxcd.linqToSql
         {
             try
             {
-                var SqlConsultant = SqlGenerator(Type, tableName: TableName, schema: Schema);
+                var SqlConsultant = SqlGenerator(Type, tableName: $"[{TableName}]", schema: $"[{Schema ?? "dbo"}]");
                 var value_keys = entity.GetKeysValues(includeProps, includeFields);
 
                 var result = SqlConsultant.Update(
-                    value_keys.Reverse().ToDictionary(x => x.Name, x => x.Value.ToSql(typeof(object))),
+                    value_keys.Reverse().ToDictionary(x => $"[{x.Name}]", x => x.Value.ToSql(typeof(object))),
                     this.Expression);
 
                 Log(result);
@@ -287,7 +287,7 @@ namespace mxcd.linqToSql
         {
             try
             {
-                var SqlConsultant = SqlGenerator(Type, tableName: TableName, schema: Schema);
+                var SqlConsultant = SqlGenerator(Type, tableName: $"[{TableName}]", schema: $"[{Schema ?? "dbo"}]");
                 var result = SqlConsultant.Fisrt(null, this.Expression, this.Order);
                 Log(result);
                 return result;
@@ -302,7 +302,7 @@ namespace mxcd.linqToSql
         {
             try
             {
-                var SqlConsultant = SqlGenerator(Type, tableName: TableName, schema: Schema);
+                var SqlConsultant = SqlGenerator(Type, tableName: $"[{TableName}]", schema: $"[{Schema ?? "dbo"}]");
                 var result = SqlConsultant.Select(null, this.Expression, this.Order);
                 Log(result);
                 return result;
@@ -317,7 +317,7 @@ namespace mxcd.linqToSql
         {
             try
             {
-                var SqlConsultant = SqlGenerator(Type, tableName: TableName, schema: Schema);
+                var SqlConsultant = SqlGenerator(Type, tableName: $"[{TableName}]", schema: $"[{Schema ?? "dbo"}]");
                 var result = SqlConsultant.Select(null, this.Expression, page, registryNumber, this.Order);
                 Log(result);
                 return result;

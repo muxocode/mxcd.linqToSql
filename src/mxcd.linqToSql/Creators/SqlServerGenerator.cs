@@ -159,7 +159,7 @@ namespace mxcd.linqToSql
                              select String.Format("{0} = {1}", oObj.Key, oObj.Value)
                             ).ToArray();
 
-            sResult = string.Format("UPDATE {0} SET {1}", TableCommand, string.Join(",", Elementos));
+            sResult = string.Format("UPDATE {0} SET {1}", TableCommand, string.Join(", ", Elementos));
 
             if (expression != null)
             {

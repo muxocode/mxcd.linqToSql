@@ -23,7 +23,7 @@ namespace mxcd.linqToSql.test._base
 
         private string table()
         {
-            return $"{schema??"dbo"}.{tableName}";
+            return $"[{schema??"dbo"}].[{tableName}]";
         }
 
         private string predicate(bool isWithNoLock)
@@ -240,19 +240,19 @@ namespace mxcd.linqToSql.test._base
         public void Update()
         {
             var oQuery = Create();
-            var sString = $"UPDATE {table()} SET Id = 3{stringExpression}";
+            var sString = $"UPDATE {table()} SET [Id] = 3{stringExpression}";
             var sResult = oQuery.From(tableName, schema).Where(this.filter).Update(new { Id = 3 });
 
-            var sString2 = $"UPDATE {table()} SET Id = 3";
+            var sString2 = $"UPDATE {table()} SET [Id] = 3";
             var sResult2 = oQuery.From(tableName, schema).Update(new { Id = 3 });
 
-            var sString3 = $"UPDATE {table()} SET Id = 0,MayorEdad = 0,Nombre = null";
+            var sString3 = $"UPDATE {table()} SET [Id] = 0, [MayorEdad] = 0, [Nombre] = null";
             var sResult3 = oQuery.From(tableName, schema).Update(new Paciente());
 
-            var sString4 = $"UPDATE {table()} SET Id = 0,MayorEdad = 0,Nombre = null";
+            var sString4 = $"UPDATE {table()} SET [Id] = 0, [MayorEdad] = 0, [Nombre] = null";
             var sResult4 = oQuery.From(tableName, schema).Where<Paciente>(null).Update(new Paciente());
 
-            var sString5 = $"UPDATE {table()} SET Id = 3";
+            var sString5 = $"UPDATE {table()} SET [Id] = 3";
             var sResult5 = oQuery.From(tableName, schema).Where<Paciente>(null).Update(new { Id = 3 });
 
             Assert.True(sResult == sString);
@@ -267,19 +267,19 @@ namespace mxcd.linqToSql.test._base
         public void Insert()
         {
             var oQuery = Create();
-            var sString = $"INSERT INTO dbo.Pacientes (MayorEdad, Nombre) OUTPUT inserted.Id VALUES (0, null)";
+            var sString = $"INSERT INTO [dbo].[Pacientes] ([MayorEdad], [Nombre]) OUTPUT inserted.[Id] VALUES (0, null)";
             var sResult = oQuery.From(tableName, schema).Insert(new Paciente());
 
-            var sString2 = $"INSERT INTO dbo.Pacientes (Id, MayorEdad, Nombre) OUTPUT inserted.Id VALUES (0, 0, null)";
+            var sString2 = $"INSERT INTO [dbo].[Pacientes] ([Id], [MayorEdad], [Nombre]) OUTPUT inserted.[Id] VALUES (0, 0, null)";
             var sResult2 = oQuery.From(tableName, schema).Insert(new Paciente(), includePrimaryKey: true);
 
-            var sString3 = $"INSERT INTO dbo.Pacientes (MayorEdad ,Nombre) OUTPUT Inserted.Id SELECT 0 ,null UNION ALL SELECT 0 ,null  ";
+            var sString3 = $"INSERT INTO [dbo].[Pacientes] ([MayorEdad], [Nombre]) OUTPUT Inserted.[Id] SELECT 0, null UNION ALL SELECT 0, null  ";
             var sResult3 = oQuery.From(tableName, schema).InsertMasive(new Paciente[] { new Paciente(), new Paciente() });
             
-            var sString4 = $"INSERT INTO dbo.Pacientes (Id ,MayorEdad ,Nombre) OUTPUT Inserted.Id SELECT 0 ,0 ,null UNION ALL SELECT 0 ,0 ,null  ";
+            var sString4 = $"INSERT INTO [dbo].[Pacientes] ([Id], [MayorEdad], [Nombre]) OUTPUT Inserted.[Id] SELECT 0, 0, null UNION ALL SELECT 0, 0, null  ";
             var sResult4 = oQuery.From(tableName, schema).InsertMasive(new Paciente[] { new Paciente(), new Paciente() }, includePrimaryKey: true);
 
-            var sString5 = $"INSERT INTO dbo.Pacientes (Id ,MayorEdad) OUTPUT Inserted.Id SELECT 0 ,0 UNION ALL SELECT 0 ,0  ";
+            var sString5 = $"INSERT INTO [dbo].[Pacientes] ([Id], [MayorEdad]) OUTPUT Inserted.[Nombre] SELECT 0, 0 UNION ALL SELECT 0, 0  ";
             var sResult5 = oQuery.From(tableName, schema).InsertMasive(new Paciente[] { new Paciente(), new Paciente() }, primaryKeyName:"Nombre");
 
             Assert.True(sResult == sString);
