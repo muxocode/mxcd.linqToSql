@@ -1,16 +1,12 @@
 ﻿using mxcd.core.entities;
-using mxcd.linqToSql.common;
 using mxcd.util.sql;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using Xunit;
 
 namespace mxcd.linqToSql.test._base
 {
-    public abstract class SqlQueryBaseTest<T, TOrder, TGroup, TSelect> where T : class, IEntity, new()
+    public abstract class SqlQueryBaseTest<T, TOrder, TGroup, TSelect> where T : class, new()
     {
         protected abstract Expression<Func<T, bool>> filter { get; }
         protected abstract Expression<Func<T, TOrder>> GetOrder();
