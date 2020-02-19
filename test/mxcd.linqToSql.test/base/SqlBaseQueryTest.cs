@@ -1,5 +1,4 @@
-﻿using mxcd.core.entities;
-using mxcd.util.sql;
+﻿using mxcd.util.sql;
 using System;
 using System.Linq.Expressions;
 using Xunit;

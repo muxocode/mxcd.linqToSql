@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
     <Authors>https://muxocode.com</Authors>
     <Description>Expression LINQ to SQL string</Description>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.0" />
-    <PackageReference Include="mxcd.core" Version="1.6.2" />
+    <PackageReference Include="mxcd.crossapp" Version="1.0.1" />
     <PackageReference Include="mxcd.util" Version="1.2.2" />
   </ItemGroup>
 

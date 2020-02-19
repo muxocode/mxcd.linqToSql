@@ -1,5 +1,4 @@
-﻿using mxcd.core.factory;
-using mxcd.linqToSql.common;
+﻿using mxcd.crossapp.factory;
 
 namespace mxcd.linqToSql
 {
